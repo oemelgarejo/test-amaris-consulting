@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dtos\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+    <None Remove="Mappers\" />
+    <None Remove="Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmarisConsulting.Domain\AmarisConsulting.Domain.csproj" />
+    <ProjectReference Include="..\AmarisConsulting.Intraestructure\AmarisConsulting.Intraestructure.csproj" />
+  </ItemGroup>
+</Project>
