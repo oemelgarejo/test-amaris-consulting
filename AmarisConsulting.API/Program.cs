@@ -2,6 +2,7 @@
 
 using AmarisConsulting.Application;
 using AmarisConsulting.Intraestructure;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +11,14 @@ builder.Services.AddAplicationServices(builder.Configuration);
 builder.Services.AddInfraestructureServices(builder.Configuration);
 
 builder.Services.AddControllers();
-builder.Services.AddCors(option =>
+builder.Services.AddCors(options =>
 {
-    option.AddPolicy("all", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy("AllowAngular", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -20,7 +26,7 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-app.UseCors();
+app.UseCors("AllowAngular");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

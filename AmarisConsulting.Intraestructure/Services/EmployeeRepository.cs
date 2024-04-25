@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -24,6 +25,10 @@ namespace AmarisConsulting.Intraestructure.Services
             try
             {
                 var api = await _httpClient.GetAsync($"http://dummy.restapiexample.com/api/v1/employee/{id}");
+                if (api.StatusCode == HttpStatusCode.TooManyRequests)
+                {
+                    throw new Exception("Demasiadas petaciones a la API");
+                }
                 api.EnsureSuccessStatusCode();
                 var json = await api.Content.ReadAsStringAsync();
                 var apiResponse = JsonConvert.DeserializeObject<ApiResponse<dynamic>>(json);
@@ -53,6 +58,10 @@ namespace AmarisConsulting.Intraestructure.Services
             {
                 var response = new List<Employee>();
                 var api = await _httpClient.GetAsync("http://dummy.restapiexample.com/api/v1/employees");
+                if (api.StatusCode == HttpStatusCode.TooManyRequests)
+                {
+                    throw new Exception("Demasiadas petaciones a la API");
+                }
                 api.EnsureSuccessStatusCode();
                 var json = await api.Content.ReadAsStringAsync();
                 var apiResponse = JsonConvert.DeserializeObject<ApiResponse<List<dynamic>>>(json);

@@ -24,19 +24,33 @@ namespace AmarisConsulting.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetEmployees()
         {
-            var employees = await _employeeApplication.GetEmployees();
-            return Ok(employees);
+            try
+            {
+                var employees = await _employeeApplication.GetEmployees();
+                return Ok(employees);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetEmployeeById(int id)
         {
-            var employee = await _employeeApplication.GetEmployeeById(id);
-            if (employee == null)
+            try
             {
-                return NotFound();
+                var employee = await _employeeApplication.GetEmployeeById(id);
+                if (employee == null)
+                {
+                    return NotFound();
+                }
+                return Ok(employee);
             }
-            return Ok(employee);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

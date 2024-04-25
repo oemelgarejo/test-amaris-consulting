@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Employee Information
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6" *ngIf="employee">
+          <p><strong>ID:</strong> {{ employee.id }}</p>
+          <p><strong>Name:</strong> {{ employee.name }}</p>
+          <p><strong>Salary:</strong> {{ employee.salary | currency:'':'symbol':'1.0-0' }}</p>
+          <p><strong>Annual Salary:</strong> {{ employee.annualSalary | currency:'':'symbol':'1.0-0' }}</p>
+        </div>
+        <div *ngIf="employee === null" class="alert alert-info text-center mt-3">
+          No se encontraron registros de .
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
