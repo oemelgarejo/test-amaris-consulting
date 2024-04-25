@@ -5,7 +5,11 @@
 
 The API was constructed with Clean Architecture principles, to way for run the project is:
 
-from terminal you can run de dotnet build and dotnet run for launch the API or run these projects from Visual Studio, after that the client frontend was created with Angular 15, the first step is from terminal, you should be in client folder and run "npm install" for install the all dependencies then, with ng serve command you can se the server running on http://localhost:4200
+Before run this solution, please ensure if you've installet .net 6 or .net 6 runtime version, then set the AmarisConsulting.API project as default,
+
+from terminal you can run de dotnet build and dotnet run for launch the API or run these projects from Visual Studio, after that the client frontend was created with Angular 15, the first step is from terminal, you should be in client folder and run "npm install" for install the all dependencies then, with ng serve command you can se the server running on http://localhost:4200, 
+
+if you got an error with "ng" command, please ensure that you've installed angular globally in your computer.
 
 The API provided for consulting employees each few minutes return 429 status code related with too many requests
 
